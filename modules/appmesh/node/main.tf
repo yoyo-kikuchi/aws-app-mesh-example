@@ -32,8 +32,19 @@ resource "aws_appmesh_virtual_node" "template" {
     }
 
     service_discovery {
-      dns {
-        hostname = var.service_discovery_dns_hostname
+      dynamic "dns" {
+        for_each = var.is_service_discovery_dns ? [""] : []
+        content {
+          hostname = var.service_discovery_dns_hostname
+        }
+      }
+
+      dynamic "aws_cloud_map" {
+        for_each = var.is_service_discovery_aws_cloud_map ? [""] : []
+        content {
+          namespace_name = var.aws_cloud_map_namespace_name
+          service_name   = var.aws_cloud_map_service_name
+        }
       }
     }
   }

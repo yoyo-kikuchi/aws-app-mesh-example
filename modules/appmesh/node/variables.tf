@@ -45,7 +45,7 @@ variable "health_check_protocol" {
 variable "health_check_path" {
   description = "(Optional) The destination path for the health check request. "
   type        = string
-  default     = "/ping"
+  default     = null
 }
 
 variable "health_check_healthy_threshold" {
@@ -75,5 +75,28 @@ variable "health_check_interval" {
 variable "service_discovery_dns_hostname" {
   description = "(Optional) Specifies the DNS service name for the virtual node."
   type        = string
+  default     = null
+}
+
+variable "aws_cloud_map_namespace_name" {
+  description = "(Required) The name of the AWS Cloud Map namespace to use."
+  type        = string
+  default     = null
+}
+
+variable "aws_cloud_map_service_name" {
+  description = "(Required) The name of the AWS Cloud Map service to use."
+  type        = string
+  default     = null
+}
+
+variable "is_service_discovery_dns" {
+  type    = bool
+  default = false
+}
+
+variable "is_service_discovery_aws_cloud_map" {
+  type    = bool
+  default = false
 }
 
