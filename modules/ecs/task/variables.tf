@@ -45,6 +45,7 @@ variable "container_definitions" {
 variable "proxy_configuration_container_name" {
   description = "(Required) Name of the container that will serve as the App Mesh proxy."
   type        = string
+  default     = "envoy"
 }
 
 variable "proxy_configuration_type" {
@@ -53,8 +54,32 @@ variable "proxy_configuration_type" {
   default     = "APPMESH"
 }
 
-variable "proxy_configuration_properties" {
-  description = "(Required) Set of network configuration parameters to provide the Container Network Interface (CNI) plugin, specified a key-value mapping."
-  type        = list(map(string))
-  default     = "ecs"
+variable "proxy_app_port" {
+  type    = string
+  default = null
+}
+
+variable "egress_ignored_ips" {
+  type    = string
+  default = null
+}
+
+variable "ignored_uid" {
+  type    = string
+  default = null
+}
+
+variable "proxy_egress_port" {
+  type    = number
+  default = null
+}
+
+variable "proxy_ingress_port" {
+  type    = number
+  default = null
+}
+
+variable "is_proxy_configuration" {
+  type    = bool
+  default = false
 }

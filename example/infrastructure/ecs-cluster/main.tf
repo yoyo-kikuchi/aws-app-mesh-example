@@ -24,29 +24,31 @@ module "security_group" {
 
 module "task_iam_role" {
   source             = "../../../modules/iam_role"
-  name               = "SampleMeshECSTaskRole"
+  name               = "EcsTaskIRoleForSampleMesh"
   assume_role_policy = file("roles/task.json")
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/CloudWatchFullAccess",
-    "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
+    "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess",
+    "arn:aws:iam::aws:policy/AWSAppMeshEnvoyAccess"
   ]
   path = "/"
 }
 
 module "task_execution_iam_role" {
   source             = "../../../modules/iam_role"
-  name               = "SampleMeshTaskExecutionRole"
+  name               = "EcsTaskExecutionRoleForSampleMesh"
   assume_role_policy = file("roles/task-execution.json")
   managed_policy_arns = [
     "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-    "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
+    "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess",
+    "arn:aws:iam::aws:policy/AWSAppMeshEnvoyAccess"
   ]
   path = "/"
 }
 
 module "ecs_service_log_group" {
   source            = "../../../modules/cloudwatch/log_group"
-  name              = "ECSAppMeshSample"
+  name              = "AppMeshSample"
   retention_in_days = 30
 }
 

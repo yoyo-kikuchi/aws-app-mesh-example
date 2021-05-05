@@ -64,16 +64,19 @@ variable "load_balancer" {
 variable "load_balancer_target_group_arn" {
   description = "(Required for ALB/NLB) ARN of the Load Balancer target group to associate with the service."
   type        = string
+  default     = null
 }
 
 variable "load_balancer_container_name" {
   description = "Required) Name of the container to associate with the load balancer (as it appears in a container definition)."
   type        = string
+  default     = null
 }
 
 variable "load_balancer_container_port" {
   description = "(Required) Port on the container to associate with the load balancer."
   type        = number
+  default     = null
 }
 
 variable "task_definition" {

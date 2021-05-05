@@ -100,6 +100,12 @@ module "color_teller_route" {
     { virtual_node : "colorteller-blue-vn", weight : 1 },
     { virtual_node : "colorteller-red-vn", weight : 1 },
   ]
+  depends_on = [
+    module.tcp_echo_virtual_node,
+    module.color_blue_virtual_node,
+    module.color_red_virtual_node,
+    module.color_white_virtual_node
+  ]
 }
 
 module "color_teller_virtual_service" {
@@ -133,7 +139,9 @@ module "tcp_echo_virtual_service" {
   mesh_name         = data.terraform_remote_state.appmesh.outputs.sample_mesh["id"]
   virtual_node_name = local.virtual_node_name
   is_virtual_node   = true
-  depends_on        = [module.tcp_echo_virtual_node]
+  depends_on = [
+    module.tcp_echo_virtual_node
+  ]
 }
 
 module "color_gateway_virtual_node" {

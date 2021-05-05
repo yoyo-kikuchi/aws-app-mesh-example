@@ -11,7 +11,7 @@ variable "internal" {
 
 variable "load_balancer_type" {
   description = "(Optional) The type of load balancer to create."
-  type        = bool
+  type        = string
   default     = "application"
 }
 
@@ -33,6 +33,11 @@ variable "enable_deletion_protection" {
   default     = false
 }
 
+variable "idle_timeout" {
+  description = "Optional) The time in seconds that the connection is allowed to be idle."
+  type        = number
+  default     = null
+}
 //variable "access_logs_bucket" {
 //  description = "(Required) The S3 bucket name to store the logs in."
 //  type        = string

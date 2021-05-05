@@ -5,6 +5,7 @@ resource "aws_lb" "template" {
   security_groups            = var.security_groups
   subnets                    = var.subnets
   enable_deletion_protection = var.enable_deletion_protection
+  idle_timeout               = var.idle_timeout
 
   //  access_logs {
   //    bucket  = var.access_logs_bucket

@@ -22,6 +22,6 @@ variable "action_target_group_arn" {
 
 variable "path_pattern" {
   description = "(Optional) Contains a single values item which is a list of path patterns to match against the request URL."
-  type        = string
-  default     = "*"
+  type        = list(string)
+  default     = ["*"]
 }

@@ -5,7 +5,7 @@ variable "load_balancer_arn" {
 
 variable "port" {
   description = "(Optional) Port on which the load balancer is listening."
-  type        = numbers
+  type        = number
   default     = 80
 }
 
