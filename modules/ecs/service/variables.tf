@@ -83,3 +83,9 @@ variable "task_definition" {
   description = "(Optional) Family and revision (family:revision) or full ARN of the task definition that you want to run in your service. "
   type        = string
 }
+
+variable "enable_execute_command" {
+  description = "(Optional) Specifies whether to enable Amazon ECS Exec for the tasks within the service."
+  type        = bool
+  default     = true
+}

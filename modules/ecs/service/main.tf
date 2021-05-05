@@ -22,6 +22,6 @@ resource "aws_ecs_service" "template" {
       container_port   = var.load_balancer_container_port
     }
   }
-
-  task_definition = var.task_definition
+  enable_execute_command = var.enable_execute_command
+  task_definition        = var.task_definition
 }

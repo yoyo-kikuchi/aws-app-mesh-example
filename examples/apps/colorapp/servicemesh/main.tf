@@ -27,6 +27,7 @@ module "color_black_virtual_node" {
   health_check_unhealthy_threshold = "2"
   health_check_timeout             = "2000"
   health_check_interval            = "5000"
+  is_service_discovery_dns         = true
   service_discovery_dns_hostname   = "colorteller-black.${local.services_domain}"
 }
 
@@ -44,6 +45,7 @@ module "color_blue_virtual_node" {
   health_check_unhealthy_threshold = "2"
   health_check_timeout             = "2000"
   health_check_interval            = "5000"
+  is_service_discovery_dns         = true
   service_discovery_dns_hostname   = "colorteller-blue.${local.services_domain}"
 }
 
@@ -61,6 +63,7 @@ module "color_red_virtual_node" {
   health_check_unhealthy_threshold = "2"
   health_check_timeout             = "2000"
   health_check_interval            = "5000"
+  is_service_discovery_dns         = true
   service_discovery_dns_hostname   = "colorteller-red.${local.services_domain}"
 }
 
@@ -78,6 +81,7 @@ module "color_white_virtual_node" {
   health_check_unhealthy_threshold = "2"
   health_check_timeout             = "2000"
   health_check_interval            = "5000"
+  is_service_discovery_dns         = true
   service_discovery_dns_hostname   = "colorteller-white.${local.services_domain}"
 }
 
@@ -90,7 +94,7 @@ module "color_teller_virtual_router" {
 }
 
 module "color_teller_route" {
-  source                  = "../../../../modules/appmesh/route"
+  source                  = "../../../../modules/appmesh/route/http"
   name                    = "colorteller-route"
   mesh_name               = data.terraform_remote_state.appmesh.outputs.sample_mesh["id"]
   virtual_router_name     = local.virtual_router_name
@@ -130,6 +134,7 @@ module "tcp_echo_virtual_node" {
   health_check_unhealthy_threshold = "2"
   health_check_timeout             = "2000"
   health_check_interval            = "5000"
+  is_service_discovery_dns         = true
   service_discovery_dns_hostname   = "tcpecho.${local.services_domain}"
 }
 
@@ -152,6 +157,7 @@ module "color_gateway_virtual_node" {
   is_health_check                = false
   listener_port                  = "9080"
   listener_protocol              = "http"
+  is_service_discovery_dns       = true
   service_discovery_dns_hostname = "colorgateway.${local.services_domain}"
   virtual_service = [
     "colorteller.${local.services_domain}",
